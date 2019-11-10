@@ -2,13 +2,10 @@
         <script type="text/javascript">
 class="menu menu_sub menu_active";
 
-$(document).on('click', '.menu__link', function() {
-  doStuff();
-});
-
-$(document).on('click', '.menu__item', function() {
-  doMoreStuff();
-});
+var button = document.querySelector("button");
+  button.menu__link("click", function() {
+    console.log("Button clicked.");
+  });
 
 class="menu menu_link menu_active";
 
