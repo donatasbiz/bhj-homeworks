@@ -17,13 +17,28 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+   new Game(document.getElementById('game'))
+
+let elem = document.getElementById('elem')
+
+function checkKeyboard(ob,e){
+        re = /\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g;
+      a = e.key.match(re);
+      if (a == null){
+        alert('{{__('Error 2:\nNon English keyboard layout is detected!\nSet the keyboard layout to English and try to fill out the field again.')}}');
+        ob.val('');
+        return false;
+      }
+      return true;
+    } 
+
+    if (re = re) {
+    alert (this.success);
+    }
+
+    if (re = re) {
+    alert (this.fail);
+    }
   }
 
   success() {
