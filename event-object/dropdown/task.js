@@ -1,4 +1,12 @@
-dropdown__list_active";
+var a = document.dropdown__list('switch');
+    
+    a.onclick = function();
+
+var b = document.dropdown__item('switch');
+    
+    b.onclick = function();
+
+
 toggle(dropdown__list) {
 <select id="dropdown__list" >
 <option>JavaScript</option>
