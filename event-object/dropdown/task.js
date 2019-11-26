@@ -1,4 +1,4 @@
-var a = document.dropdown__list('switch');
+var a = document.getElementsByTagName('switch');
     
     a.onclick = function();
 
