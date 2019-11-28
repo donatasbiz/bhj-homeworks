@@ -2,10 +2,6 @@ var a = document.getElementsByClassName('switch');
     
     a.onclick = function();
 
-var b = document.getElementsByClassName('switch');;
-    
-    b.onclick = function();
-
 
 toggle(dropdown__list) {
 <select id="dropdown__list" >
