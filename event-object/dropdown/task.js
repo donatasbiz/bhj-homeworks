@@ -1,8 +1,8 @@
-var a = document.getElementsByTagName('switch');
+var a = document.getElementsByClassName('switch');
     
     a.onclick = function();
 
-var b = document.dropdown__item('switch');
+var b = document.getElementsByClassName('switch');;
     
     b.onclick = function();
 
