@@ -1,7 +1,9 @@
-var a = document.getElementsByClassName('switch');
-    
-    a.onclick = function();
+var a = document.querySelectorAll('switch');
 
+letinput=document.getElementById('switch');
+                                 input.onclick=function() {
+    console.log(‘Buttonwasclicked’)
+}
 
 toggle(dropdown__list) {
 <select id="dropdown__list" >
