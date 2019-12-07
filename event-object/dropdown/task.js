@@ -5,17 +5,10 @@ letinput=document.getElementById('dropdown__value');
     console.log(‘Buttonwasclicked’)
 }
 
-toggle(dropdown__list) {
-  document.getElementById("dropdown__list").className ="dropdown__list_active";
-<select id="dropdown__list" >
-<option>JavaScript</option>
-<option>PHP</option>
-<option>Python</option>
-<option>Fortran</option>
-</select>
+let dropdownValue = document.querySelector('.dropdown__value');
+let list = document.querySelector('.dropdown__list');
+let links = document.querySelectorAll('a');
 
- dropdown__list = function() {
-
-      return false;
-}
-}
+document.querySelector('.dropdown__value').addEventListener('click', function(){ 
+let input = document.querySelector('.dropdown__value');
+});
