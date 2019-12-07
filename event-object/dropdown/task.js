@@ -12,3 +12,5 @@ let links = document.querySelectorAll('a');
 document.querySelector('.dropdown__value').addEventListener('click', function(){ 
 let input = document.querySelector('.dropdown__value');
 });
+
+dropdown__list_active.classList.add("dropdown__list ");
