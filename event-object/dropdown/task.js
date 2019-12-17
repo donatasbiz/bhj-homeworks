@@ -9,4 +9,12 @@ if (list.className === 'dropdown__list') {
 } else { list.className = 'dropdown__list'; 
        }
 
-dropdown__list_active.classList.add("dropdown__list ");
+function rename(event) {
+    event.preventDefault();
+    dropdownValue.textContent = event.target.textContent;
+		list.className = 'dropdown__list';
+}
+
+for (let link of links) {
+    link.addEventListener('click', rename);
+}
