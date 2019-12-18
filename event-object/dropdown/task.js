@@ -8,7 +8,7 @@ if (list.className === 'dropdown__list') {
   list.className = 'dropdown__list dropdown__list_active'; 
 } else { list.className = 'dropdown__list'; 
        }
-
+);
 function rename(event) {
     event.preventDefault();
     dropdownValue.textContent = event.target.textContent;
