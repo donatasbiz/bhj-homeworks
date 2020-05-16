@@ -1,0 +1,158 @@
+///1-ое задание - текстовый чат///
+'use strict';
+
+let chatWidget = document.querySelector(".chat-widget"),
+    messages = document.querySelector(".chat-widget__messages"),
+    inputMessage = document.getElementById("chat-widget__input"),
+    chatArea = document.querySelector(".chat-widget__messages-container");
+
+
+let answers = ["Р”РѕР±СЂС‹Р№ РґРµРЅСЊ!", "Р’СЃРµРіРѕ РґРѕР±СЂРѕРіРѕ!", "РќРµС‚", "Р”Р°", "Р§РµРј РјРѕРіСѓ РїРѕРјРѕС‡СЊ?"];    
+chatWidget.addEventListener('click', function(){
+    chatWidget.classList.add("chat-widget_active");
+    let timer = setTimeout(ask, 30000);
+
+
+    document.addEventListener('keyup', function(e) {
+    if (e.keyCode == 13 && inputMessage.value != "") {
+        let dateHours = new Date().getHours();
+        let dateMinutes = new Date().getMinutes();
+        let data = 
+        messages.innerHTML += `
+        <div class="message message_client">
+          <div class="message__time">${dateHours}:${dateMinutes}</div>
+          <div class="message__text">
+            ${inputMessage.value}
+          </div>
+        </div>
+        `;
+        inputMessage.value="";
+        messages.innerHTML += `
+        <div class="message">
+            <div class="message__time">${dateHours}:${(dateMinutes<10 ? '0':'')+dateMinutes}</div>
+            <div class="message__text">${answers[Math.floor(Math.random()*4)]}</div>
+        </div>
+        `;
+        chatArea.scrollTop = chatArea.scrollHeight;
+        clearTimeout(timer);
+    }
+});
+
+});
+function ask () {
+    let dateHours = new Date().getHours();
+    let dateMinutes = new Date().getMinutes();
+    messages.innerHTML += `
+    <div class="message">
+        <div class="message__time">${dateHours}:${(dateMinutes<10 ? '0':'')+dateMinutes}</div>
+        <div class="message__text">Р’С‹ С‚СѓС‚?</div>
+    </div>
+    `; 
+}
+
+///2-ое задание - список интересов ///
+'use strict';
+
+let checkboxes = document.querySelectorAll('input.interest__check');
+for (let i = 0; i < checkboxes.length; i++) {
+    let checkbox = checkboxes[i];
+    let interests = checkbox.closest('ul.interests_active');
+    if (interests === null) {
+        checkbox.onchange = function () {
+            let list = checkbox.closest('li.interest');
+            let children = list.querySelectorAll('input.interest__check');
+            for (let j = 0; j < children.length; j++) {
+                let child = children[j];
+                child.checked = checkbox.checked;
+            }
+        }
+    }
+}
+
+///3-е задание - выпадающий сптсок с поиском///
+class Autocomplete {
+  constructor( container ) {
+    this.container = container;
+    this.input = container.querySelector( '.autocomplete__input' );
+    this.searchInput = container.querySelector( '.autocomplete__search' );
+    this.list = container.querySelector( '.autocomplete__list' );
+    this.valueContainer = container.querySelector( '.autocomplete__value' );
+    this.valueElement = container.querySelector( '.autocomplete__text-content' );
+
+    this.registerEvents();
+  }
+
+  registerEvents() {
+    this.valueContainer.addEventListener( 'click', e => {
+      this.searchInput.classList.add( 'autocomplete__search_active' );
+      this.list.classList.add( 'autocomplete__list_active' );
+      this.searchInput.value = this.valueElement.textContent.trim();
+      this.searchInput.focus();
+
+      this.onSearch();
+    });
+
+
+    this.searchInput.addEventListener( 'input', e => this.onSearch());
+
+    this.list.addEventListener( 'click', e => {
+      const { target } = e;
+      if ( !target.matches( '.autocomplete__item' )) {
+        return;
+      }
+
+      const { textContent: text } = target,
+        { id: value, index } = target.dataset;
+
+      this.onSelect({
+        index,
+        text,
+        value
+      });
+    });
+  }
+
+  onSelect( item ) {
+    this.input.selectedIndex = item.index;
+    this.valueElement.textContent = item.text;
+
+    this.searchInput.classList.remove( 'autocomplete__search_active' );
+    this.list.classList.remove( 'autocomplete__list_active' );
+  }
+
+  onSearch() {
+    const matches = this.getMatches( this.searchInput.value );
+
+    this.renderMatches( matches );
+  }
+
+  renderMatches( matches ) {
+    const html = matches.map( item => `
+    	<li>
+        <span class="autocomplete__item"
+        	data-index="${item.index}"
+          data-id="${item.value}"
+        >${item.text}</span>
+      </li>
+    `);
+
+    this.list.innerHTML = html.join('');
+  }
+
+  getMatches( text ) {
+    let result = [];
+    for (let i = 0; i < this.input.options.length; i++) {
+      const option = this.input.options[i];
+      console.log(option.text + ": " + option.text.includes(text))
+      if (option.text.includes(text) === true) {
+        result.push({
+            text: option.text,
+            value: option.value
+        });
+      }
+    }
+    return  result;
+    }
+}
+
+new Autocomplete( document.querySelector( '.autocomplete' ));
