@@ -1,0 +1,82 @@
+///1-ое задание - появление элементов при прокрутке///
+'use strict';
+
+let reveals = document.querySelectorAll('.reveal');
+
+
+window.addEventListener('scroll', function() {
+    reveals.forEach((reveal) => 
+            { 
+                if (reveal.getBoundingClientRect().top <= reveal.offsetHeight && 
+                reveal.getBoundingClientRect().top >= 0) {
+                    reveal.classList.add("reveal_active");
+                } else {
+                reveal.classList.remove("reveal_active");
+            }
+     });  
+});
+
+///2-ое задание ротатор рекламы ///
+'use strict';
+
+let rotators = document.querySelectorAll(".rotator__case"),
+    i = 0,
+    speed = 1000;
+
+
+function loop() {
+    rotators.forEach((rotator) => {
+        rotator.classList.remove("rotator__case_active");
+    });
+    rotators[i].style.color = rotators[i].dataset.color;
+    rotators[i].classList.add("rotator__case_active");
+    speed = +rotators[i].dataset.speed;
+    i = (i + 1) % rotators.length;
+    setTimeout(loop, speed);
+}
+
+loop();
+
+///3-е задание онлайн читалка///
+'use strict';
+
+let book = document.getElementById('book'),
+    sizeWrapper = document.querySelector('.book__control_font-size'),
+    colorWrapper = document.querySelector('.book__control_color'),
+    bgWrapper = document.querySelector('.book__control_background'),
+    controlsSize = document.querySelectorAll('.font-size'),
+    colors = document.querySelectorAll('.book__control_color .color'),
+    bg = document.querySelectorAll('.book__control_background .color');
+
+sizeWrapper.addEventListener('click', function(e){
+    e.preventDefault();
+    controlsSize.forEach((control) => control.classList.remove("font-size_active"));
+    e.target.classList.add("font-size_active");
+    book.classList.remove("book_fs-big");
+    book.classList.remove("book_fs-small");
+    if (e.target.dataset.size) {
+        book.classList.add("book_fs-"+e.target.dataset.size);
+    }
+});
+
+colorWrapper.addEventListener('click', function(e){
+    e.preventDefault();
+    colors.forEach((color) => color.classList.remove("color_active"));
+    e.target.classList.add("color_active");
+    book.classList.remove("book_color-gray");
+    book.classList.remove("book_color-whitesmoke");
+    if (e.target.dataset.color) {
+        book.classList.add("book_color-"+e.target.dataset.color);
+    }
+});
+
+bgWrapper.addEventListener('click', function(e){
+    e.preventDefault();
+    bg.forEach((color) => color.classList.remove("color_active"));
+    e.target.classList.add("color_active");
+    book.classList.remove("book_bg-gray");
+    book.classList.remove("book_bg-black");
+    if (e.target.dataset.color) {
+        book.classList.add("book_bg-"+e.target.dataset.color);
+    }
+});
